@@ -1,0 +1,45 @@
+1. create table course_user(user_id number(10) constraint pk_user_id primary key,
+    name varchar2(200) not null,
+    phoneno  number(10) unique,
+    dob date,
+    email varchar2(100) unique,
+   password varchar2(50) not null,
+   created_by number(10) not null,
+   created_date timestamp not null,
+   modified_by number(10) not null,
+   modified_date timestamp not null);
+   
+
+2.create table department(id number(10) constraint pk_department_id primary key,
+  name varchar2(100) not null);
+  
+
+3.create table course(course_id number(10) constraint pk_crse_id primary key,
+  name varchar2(100) not null,
+  start_date timestamp not null,
+  end_date timestamp not null,
+  department_id number(10) constraint fk_departmnt_id references department(id),
+  course_author_id number(10)constraint fk_course_author_id references  author(author_id),
+  where_you_will_learn varchar2(1000) not null,
+  requirements varchar2(1000));
+  
+
+4. create table materials(id number(10) constraint pk__materials_id primary key, 
+   name varchar2(100) not null, 
+   videos varchar2(200) not null, 
+   course_id number(10) constraint fk_courses_id references course(course_id),
+   videos_desc varchar2(1000) not null );
+ 
+5. create table author(author_id number(5) primary key,
+   name varchar2(200) not null,
+   username varchar2(200) not null,
+   password varchar2(200) not null);
+
+6.create  table course_enrollment
+  (enroll_id number(5) primary key,
+  enroll_course_id number(5) constraint fk_enrol_crs_id references course(course_id),
+  enroll_user_id number(5) constraint fk_enrol_user_id references course_user(user_id));
+
+
+
+
